@@ -1,4 +1,4 @@
-use headless_chrome::{Browser, LaunchOptions};
+use headless_chrome::{protocol::cdp::Page, Browser, LaunchOptions};
 use pyo3::{pyfunction, PyResult};
 use scraper::{ElementRef, Html, Selector};
 use std::{collections::HashMap, thread::sleep, time::Duration};
@@ -142,8 +142,18 @@ pub fn search_timetable(
     println!("got timetable page");
     let html = tab.wait_until_navigated().unwrap();
 
+    let _jpeg_data = tab
+        .capture_screenshot(Page::CaptureScreenshotFormatOption::Jpeg, None, None, true)
+        .unwrap();
+    std::fs::write("./screenshots/screenshot1.jpg", _jpeg_data)?;
+
     println!("wait for timetable iframe");
     sleep(Duration::from_secs(wait));
+
+    let _jpeg_data = tab
+        .capture_screenshot(Page::CaptureScreenshotFormatOption::Jpeg, None, None, true)
+        .unwrap();
+    std::fs::write("./screenshots/screenshot2.jpg", _jpeg_data)?;
 
     let table_content = html
         .wait_for_elements_by_xpath(r#"//*[@id="contenedor"]"#)
