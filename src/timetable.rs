@@ -135,6 +135,8 @@ pub fn search_timetable(
         .type_into(&year)
         .unwrap();
 
+    tab.press_key("Tab").unwrap();
+
     println!("searching timetable");
     tab.press_key("Enter").unwrap();
 
