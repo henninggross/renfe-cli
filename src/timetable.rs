@@ -137,7 +137,6 @@ pub fn search_timetable(
 
     println!("searching timetable");
     tab.press_key("Enter").unwrap();
-    tab.press_key("Enter").unwrap();
 
     // wait on navigating and prepare search in result page
     let html = tab.wait_until_navigated().unwrap();
