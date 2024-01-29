@@ -132,18 +132,16 @@ pub fn search_timetable(
     println!("adding year");
     tab.find_element_by_xpath(r#"//*[@id="AF"]"#)
         .unwrap()
-        .click()
+        .type_into(&year)
         .unwrap();
-    tab.type_str(&year).unwrap();
-
-    tab.press_key("Tab").unwrap();
 
     println!("searching timetable");
     tab.press_key("Enter").unwrap();
+    tab.press_key("Enter").unwrap();
 
     // wait on navigating and prepare search in result page
-    println!("got timetable page");
     let html = tab.wait_until_navigated().unwrap();
+    println!("got timetable page");
 
     let _jpeg_data = tab
         .capture_screenshot(Page::CaptureScreenshotFormatOption::Jpeg, None, None, true)
