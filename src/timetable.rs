@@ -132,8 +132,9 @@ pub fn search_timetable(
     println!("adding year");
     tab.find_element_by_xpath(r#"//*[@id="AF"]"#)
         .unwrap()
-        .type_into(&year)
+        .click()
         .unwrap();
+    tab.type_str(&year).unwrap();
 
     tab.press_key("Tab").unwrap();
 
